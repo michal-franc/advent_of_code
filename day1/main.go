@@ -11,25 +11,30 @@ func Rtoi(r rune) int {
   return int(r) - '0'
 }
 
-func simpleSum(values string) int {
-  sum := 0
-  current := -1
+func checkBoundOr0(values string) int {
   first := Btoi(values[0])
   last := Btoi(values[len(values)-1])
 
   if(first == last) {
-    sum += first
+    return first
   }
 
+  return 0
+}
+
+func simpleSum(values string) int {
+  sum := checkBoundOr0(values)
+
+  last := -1
   for _, num := range values {
 
-    numI := Rtoi(num)
+    current := Rtoi(num)
 
-    if(current == numI) {
-      sum += numI
+    if(current == last) {
+      sum += current
     }
 
-    current = numI
+    last = current
   }
 
   return sum
