@@ -15,7 +15,7 @@ func checkBoundOr0(values string) int {
   first := Btoi(values[0])
   last := Btoi(values[len(values)-1])
 
-  if(first == last) {
+  if first == last {
     return first
   }
 
@@ -30,7 +30,7 @@ func simpleSum(values string) int {
 
     current := Rtoi(num)
 
-    if(current == last) {
+    if current == last {
       sum += current
     }
 

@@ -2,42 +2,22 @@ package main
 
 import "testing"
 
-func TestBasic5(t *testing.T) {
-  actual := simpleSum("4424")
-  expected := 8
-  if ( actual != expected) {
-    t.Errorf("For 4424 expected %v but got %v", expected, actual)
-  }
-}
-
-func TestBasic3(t *testing.T) {
-  actual := simpleSum("1111")
-  expected := 4
-  if ( actual != expected) {
-    t.Errorf("For 1111 expected %v but got %v", expected, actual)
-  }
-}
-
-func TestBasic2(t *testing.T) {
-  actual := simpleSum("91212129")
-  expected := 9
-  if ( actual != expected) {
-    t.Errorf("For 91212129 expected %v but got %v", expected, actual)
-  }
-}
-
-func TestBasic1(t *testing.T) {
-  actual := simpleSum("1234")
-  expected := 0
-  if ( actual != expected) {
-    t.Errorf("For 1234 expected %v but got %v", expected, actual)
-  }
-}
-
 func TestBasic(t *testing.T) {
-  actual := simpleSum("1122")
-  expected := 3
-  if ( actual != expected) {
-    t.Errorf("For 1122 expected %v but got %v", expected, actual)
+
+  testCases := map[string]int {
+    "4424": 8,
+    "1111": 4,
+    "91212129": 9,
+    "1234": 0,
+    "1122": 3,
+    "112": 1,
+  }
+
+  for key, val := range testCases {
+  actual := simpleSum(key)
+  expected := val
+  if actual != expected {
+    t.Errorf("For %v expected %v but got %v", key, expected, actual)
+    }
   }
 }
