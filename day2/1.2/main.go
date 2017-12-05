@@ -6,12 +6,16 @@ import "strings"
 import "strconv"
 import "math"
 
-func Btoi(r byte) int {
-  return int(r) - '0'
+func modulo(x int, y int) float64 {
+  return math.Mod(float64(x), float64(y))
 }
 
-func Rtoi(r rune) int {
-  return int(r) - '0'
+func divide(x int, y int) int {
+  if x > y {
+    return x / y
+  } else {
+    return y / x
+  }
 }
 
 func FindEvenDivision(rawdata string) int {
@@ -20,23 +24,22 @@ func FindEvenDivision(rawdata string) int {
     return 0
   }
 
+  result := -1 //default value
+
   for ii, i := range values {
     current, _ := strconv.Atoi(i)
     for ji, j := range values {
       next, _ := strconv.Atoi(j)
       if ii != ji {
-        if math.Mod(float64(current), float64(next)) == 0 {
-          if next > current {
-            return next / current
-          } else {
-            return current / next
-          }
+        if modulo(next, current) == 0 {
+          result = divide(next, current)
+          break;
         }
       }
     }
   }
 
-  return -1
+  return result
 }
 
 func main() {
